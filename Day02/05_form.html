@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+<!-- 表单标签  表单提交数据,只是前后台交互,前台向后台提交数据的方式之一-->
+<!-- 如果使用表单方式提交数据,就必须具备表单相关属性及其内部的input sumbit标签专门用于提交数据的按钮 -->
+<form action="" method="GET">
+  <table border="1" style="border-collapse: collapse;">
+    <tr>
+      <td>文本输入框</td>
+      <td>
+        <!-- maxlength 最长输入文字  下面的属性使用中文只是为了解释意思  value 最重要-->
+        <input type="text" name="可交互 PHP" id="id选择器" placeholder="提示文字" maxlength="4" value="初始值">
+      </td>
+      <td>
+        value属性是重点,value属性的值可以通过js获取到.如果最开始的初始值设置内容,获取值将是最初设置的值.更多的时候value是需要用户填写的
+      </td> 
+    </tr>
+    <tr>
+      <td>密码输入框</td>
+      <td>
+        <input type="password" name="" id="">
+      </td>
+      <td>
+        password特点是输入内容不可见,同时也需要依靠value获取其值
+      </td>
+    </tr>
+    <tr>
+      <td>单选框</td>
+      <td>
+        <input type="radio" name="sex" id="" values="0">男
+        <input type="radio" name="sex" id="" values="1">女
+      </td>
+      <td>
+        name属性在选框里很重要(必填),依靠name属性分组,相同的name名为一组.value值就是获取被选中的一项的值
+      </td>
+    </tr>
+    <tr>
+      <td>多选框</td>
+      <td>
+        <input type="checkbox" name="like" id="" values="0">听音乐
+        <input type="checkbox" name="like" id="" values="0">看电影
+        <input type="checkbox" name="like" id="" values="1" checked>洗澡
+        <input type="checkbox" name="like" id="" values="3">睡觉
+      </td>
+      <td style="text-align:center;">多选也要写name</td>
+    </tr>
+    <tr>
+      <td>文件上传</td>
+      <td>
+        <input type="file" multiple>
+      </td>
+      <td>
+        需要上传多个文件时multiple属性的设置,让文件上传允许多个文件,按住ctrl选择文件
+      </td>
+    </tr>
+    <tr>
+      <td>数字</td>
+      <td>
+        <input type="number" name="" id="" value="2" max="100" min="1">
+      </td>
+      <td>数字类型的可以设置初始值和最大以及最小值</td>
+    </tr>
+    <tr>
+      <td>电子邮件</td>
+      <td><input type="email" name="" id=""></td>
+      <td>有自己的验证方式,但不是严格的验证方式,提示方式也随浏览器的不同而不同</td>
+    </tr>
+    <tr>
+      <td>颜色</td>
+      <td><input type="color" name="" id="" values></td>
+      <td>
+          当用户选择完颜色后会出现value的新值,可以通过value属性获取到用户选择的颜色
+      </td>
+    </tr>
+    <tr>
+      <td>在范围内选定一个值</td>
+      <td>0<input type="range" name="" id="" min="0" max="100" step="10">100</td>
+      <td>因为需要范围所以min和max要写,得到的值会在value属性中</td>
+    </tr>
+    <tr>
+      <td>日期</td>
+      <td><input type="date" name="" id="" ></td>
+      <td>用户选完之后会存在value值中</td>
+    </tr>
+    <tr>
+      <td>下拉菜单</td>
+      <td>
+        <select name="" id="">
+          <option value="0">北京</option>
+          <option value="1">上海</option>
+          <option value="2">郑州</option>
+          <option value="3">成都</option>
+          <option value="4">深圳</option>
+          <option value="5">厦门</option>
+          <option value="6">杭州</option>
+          <option value="7">南京</option>
+          <option value="8">无锡</option>
+        </select>
+      </td>
+      <td>
+        用户选择的哪一项,会在select的value中,multiple属性可以让下拉菜单多选,按住ctrl选择
+      </td>
+      <tr>
+        <td>文本域</td>
+        <td>
+          <textarea name="" style="resize: none;"></textarea>
+        </td>
+        <td>
+          禁止用户拉伸文本域 style="resize:none;"
+        </td>
+      </tr>
+    </tr>
+    <tr>
+      <td>标记标签</td>
+      <td>
+        <input type="checkbox" name="" id="mainmi">
+        <label for="mainmi">同意XXX的协议</label>
+      </td>
+      <td>label标签有一个for属性可以关联input元素的id,从而可以通过label标签控制input标签(单选\多选)</td>
+    </tr>
+    <tr>
+      <td>普通按钮</td>
+      <td><input type="button" value="普通按钮"></td>
+      <td>专门用于表单提交的按钮</td>
+    </tr>
+    <tr>
+      <td>重置按钮</td>
+      <td><input type="reset" value="重置按钮"></td>
+    </tr>
+    <tr>
+      <td>提交按钮</td>
+      <td><input type="submit" value="提交"></td>
+    </tr>
+  </table>
+</form>
+</body>
+
+</html>

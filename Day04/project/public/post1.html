@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <script>
+    // 1.创建异步对象
+    var xhr = new XMLHttpRequest();
+    //创建监听处理响应
+    xhr.onreadystatechange = function () {
+      //4.1判断请求的状态
+      if (xhr.readyState == 4) {
+        //(1)准备好了,再判断状态码
+        if (xhr.status >= 200 && xhr.status < 300) {
+          //-接收服务器返回的数据
+          var result = xhr.responseText;
+          console.log(result);
+        } else {
+          //-请求有问题
+          alert('请求出错了');
+        }
+      } else {
+        //(2)还没有准备好(可不写)
+
+      }
+    }
+    // 2.设置请求信息
+    xhr.open("POST", "/login", true);
+    //设置请求信息之后发送请求之前这个位置,指定用什么编码方式传参
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // 3.发送异步请求
+    xhr.send('id=3&name=jack');
+    //访问地址:http://127.0.0.1:8080/post1.html
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <script>
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          var result = xhr.responseText;
+          console.log(result);
+        } else (
+          //请求除了问题
+          alert("请求出问题了")
+        )
+      }
+    }
+    xhr.open("DELETE", "/delete?id=3", true);
+    xhr.send();
+    //访问的地址是:http://127.0.0.1:8080/del.html
+
+  </script>
+</body>
+
+</html>

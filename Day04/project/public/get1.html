@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <script>
+    //1.创建异步对象
+    //易错点：忘了写new
+    var xhr = new XMLHttpRequest();
+    //2.设置请求信息
+    //易错点：参数的引用，单词，地址的点
+    //true异步  false同步
+    //但是不建议使用同步的方法,会印象用户的体验
+    //用同步的方法可以看到返回的数据,但是该方法不建议使用
+    xhr.open("GET", "/list", true);
+
+    //3.发送异步请求
+    xhr.send(null);
+    //4.处理响应
+    //易错点:在最后容易加括号
+    var result = xhr.responseText;
+    //查看结果
+    console.log(result);
+    //访问的地址
+    //http://127.0.0.1:8080/get1.html
+  </script>
+</body>
+
+</html>

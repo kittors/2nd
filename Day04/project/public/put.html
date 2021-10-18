@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <script>
+    //1.创建异步对象
+    var xhr = new XMLHttpRequest();
+    //4.创建监听处理响应
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        //准好了,再判断状态码
+        if (xhr.status >= 200 && xhr.status < 300) {
+          var result = xhr.responseText;
+          console.log(result);
+        } else {
+          //请求有问题
+          alert('请求出错了');
+        }
+      }
+    }
+    //2.设置请求信息
+    xhr.open("PUT", "/edit", true);
+    //设置请求头
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //2.发送异步请求
+    xhr.send('id=2&&name=bob');
+    //访问地址:http://127.0.0.1:8080/put.html
+
+  </script>
+</body>
+
+</html>

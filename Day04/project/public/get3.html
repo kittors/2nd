@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <script>
+    //假如用户传入的id值可变
+    var num = 6;
+    //1.创建异步对象
+    var xhr = new XMLHttpRequest();
+    //4.创建监听处理响应
+    xhr.onreadystatechange = function () {
+      //判断请求的状态
+      if (xhr.readyState == 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          // 接收服务器返回的数据
+          var result = xhr.responseText;
+          console.log(result);
+        } else {
+          alert('状态码错误')
+        }
+      } else {
+        // 还没有准备好
+      }
+
+    }
+    //2.设置请求信息 /query 接口需传入参数查询一条数据 ?id =XXX
+    //在``模板字符串使用${变量名}可以直接拼接成字符串
+    xhr.open("GET", `/query?id=${num}`, true);
+    //3.发送异步请求
+    xhr.send();
+    //地址栏访问:http://127.0.0.1:8080/get3.html
+  </script>
+</body>
+
+</html>

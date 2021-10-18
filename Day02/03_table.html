@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+<!-- 表格的最外层是table标签 -->
+<!-- 
+  table表格中分为以下标签
+    caption 表格标题
+    thead 表头
+    tbody 表主体
+    tfoot 表尾部
+    tr 行
+    td 列
+ -->
+<table border="1" style="border-collapse:collapse;">
+    <tr>
+      <td>1</td>
+      <td>天福号酱肘子</td>
+      <td>357元</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>全聚德烤鸭</td>
+      <td>256元</td>
+    </tr>
+</table>
+<!-- 加入表头 -->
+<!-- 只要加入表头,必须加表主体的tbody -->
+
+<table border="1" style="border-collapse:collapse;">
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>产品名称</th>
+      <th>价格</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>天福号酱肘子</td>
+      <td>357元</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>全聚德烤鸭</td>
+      <td>256元</td>
+    </tr>
+  </tbody>
+
+</table>
+
+<!-- 全部内容 -->
+<table border="1" style="border-collapse:collapse;">
+  <caption>十一探亲礼物</caption>
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>产品名称</th>
+      <th>价格</th>
+    </tr>
+  </thead>
+  <!-- tfoot反人类 写在thead后面 -->
+  <tfoot>
+    <tr>
+      <td>总计</td>
+      <td></td>
+      <td>613元</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>天福号酱肘子</td>
+      <td>357元</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>全聚德烤鸭</td>
+      <td>256元</td>
+    </tr>
+  </tbody>
+
+</table>
+</body>
+
+</html>

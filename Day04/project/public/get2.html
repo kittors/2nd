@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <script>
+    //1.创建异步对象
+    var xhr = new XMLHttpRequest();
+    //4.处理响应(函数负责检查请求的状态)
+    xhr.onreadystatechange = function () {
+      //处理响应
+      //请求的状态
+      //0 被创建但是没有调用open方法
+      //2 send方法已经被调用
+      //3 下载缓存中
+      //4 拿到数据是否失败
+      //请求的状态 实际需要返回值是4的时候
+      console.log(xhr.readyState);
+      if (xhr.readyState == 4) {
+        //一切就绪,得到了恢复
+        //就绪之后还要检查http响应的状态码,从而判断ajax是否成功(200 ok)
+        if (xhr.status >= 200 && xhr.status < 300) {
+          //拿到服务器传来的数据
+          var result = xhr.responseText;
+          console.log(result);
+        } else {
+          //请求出问题了,例如:响应可能是404(未找到)或者500
+          alert('请求出问题了');
+        }
+
+      } else {
+        //还没准备好(不是4)
+      }
+
+    }
+    //0 位置
+    //2.设置请求信息
+    xhr.open("GET", "/list", true);
+    //1 位置
+    //3.发送异步请求
+    xhr.send(null);
+    //2 位置
+    //访问地址:http://127.0.0.1:8080/get2.html
+  </script>
+</body>
+
+</html>
