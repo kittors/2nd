@@ -1,2 +1,2 @@
-# 2ed
+# 2nd
 Study
