@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 脚本引入放的越前面越好 -->
+  <script src="./pokedata.js"></script>
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <!-- 以下的标签放在li里 -->
+  <h1>001</h1>
+  <h2>妙蛙种子</h2>
+  <img src="http://media.52poke.com/wiki/thumb/2/21/001Bulbasaur.png/300px-001Bulbasaur.png" alt="" width="50px">
+  <ul id="namelist"></ul>
+  <ul id="pokelist"></ul>
+  <button id="btn">点击后获取所有的宝可梦</button>
+  <script>
+    //此时内部脚本可以使用在head里引入的外部脚本的变量
+    console.log(data);
+    // 数组遍历之后
+    var arr = ['tom', 'jack', 'bob'];
+    //获取准备插入的元素
+    var namelist = document.getElementById('namelist');
+    // namelist.innerHTML = `<li>${arr[0]}</li>`
+    //使用for循环遍历数组，将数组中的数据挨个拿出来
+    //在for之前准备一个专门承接每次遍历出来的数据的变量（不是覆盖是累加）
+    var str = '';
+    for (var i = 0; i < arr.length; i++) {
+      //arr[i]
+      str += `<li>${arr[i]}</li>`;
+    }
+    namelist.innerHTML = str;
+    //**********************
+
+    var btn = document.getElementById('btn');
+    btn.onclick = function () {
+      // 1.获取元素pokelist
+      var pokelist = document.getElementById('pokelist');
+      // 2.提前准备一个用于承接累加数据的空变量
+      var str1 = '';
+
+      // 3.遍历data这个数组
+      for (var i = 0; i < data.length; i++) {
+
+        str1 += `<li><h1>${data[i].id}</h1><h2>${data[i].name}</h2><img src="${data[i].url}" alt="" width="50px"></li>`;
+      }
+      pokelist.innerHTML = str1;
+      // 4.在循环体内，将需要的数据如：data[i].属性名 就能拿到他的值
+      //（1）先用li里放置所有小精灵的名字
+    }
+
+    var abc = [1, 2, 3, 4, 5, 6];
+    namelist.innerHTML = showlist(abc);
+    //整理整理重新写到函数里便于调用
+    function showlist(arr) {
+      //1.专用变量累加数据
+      var str = '';
+      //2.遍历形参数组
+      for (var i = 0; i < arr.length; i++) {
+        // 3.在模板字符串中拼结构
+        //可以在模板字符串里加结构
+        str += `<li>${arr[i]}</li>`;
+      }
+      return str;
+    }
+  </script>
+</body>
+
+</html>

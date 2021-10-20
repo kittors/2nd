@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <span id="more">更多</span>
+  <div id="box">
+    <p>这是一段文字</p>
+  </div>
+  <ul id="list">
+
+  </ul>
+  <input type="text" id="username">
+  <script>
+    //在document中调用属性和方法
+    var more = document.getElementById('more');
+    console.log(more);
+
+    var box = document.getElementById('box');
+    console.log(box);
+    //获取元素内容,是所有内容含标签文字等
+    console.log(more.innerHTML);
+    console.log(box);
+    //设置元素里的内容（在元素中插入内容）
+    //使用innerHTML赋值的内容会替代原标签里的内容
+    box.innerHTML = "我改了文字了";
+    //练习，向一个ul标签中加入3个li标签里放入三个水果名字
+    //1.向谁里加内容（获取该元素）
+    //2.向谁里加内容（用什么加）
+    var list = document.getElementById("list");
+    list.innerHTML = "<li>西瓜</li><li>香蕉</li><li>苹果</li>"
+    var username = document.getElementById('username');
+    //获取元素可以，拿到input输入框里用户输入的内容，不能使用innerHTML直接拿到
+    console.log(username)
+  </script>
+</body>
+
+</html>

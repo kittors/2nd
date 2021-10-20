@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <input type="text" id="uname">
+  <input type="text" id="pwd">
+  <button id="btn">提交</button>
+  <script>
+    //非空验证
+    var str1 = '';
+    var str2 = '        ';
+    var str3 = ' tom ';
+    // console.log(str1.trim().length);
+    // console.log(str2.trim().length);
+    // console.log(str3.trim().length);
+    // 1.获取所有有id的元素
+    var uname = document.getElementById("uname");
+    var pwd = document.getElementById("pwd");
+    var btn = document.getElementById("btn")
+    // 2.点击按钮给按钮绑定点击事件
+    btn.onclick = function () {
+      // 3.接收input传入的值,但是要去空格
+      // 4.如果去空格后长度为0,那么弹窗提示用户内容有空值
+      var unameval = uname.value.trim();
+      if (unameval.length) {
+        alert('可以了，该往后台传了');
+      } else {
+        // 5.如果去空格长度不为0,弹窗提示用户"可以了"
+        alert('有空值');
+      }
+      console.log(uname.value.trim(), pwd.value.trim());
+    }
+
+  </script>
+</body>
+
+</html>

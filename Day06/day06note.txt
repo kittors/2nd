@@ -1,0 +1,40 @@
+一、数据库创建
+1.mydb新的数据库
+2.创建两张表 userinfo表（用户的数据），admin表（管理员的用户名和密码）
+
+二、后台代码
+1.下载依赖node_modules
+2.创建routes放模块
+3.views放html文件的文件夹
+4.创建了app.js和用于连接数据库的pool.js
+
+
+三、模块
+1.写模块需要引入以下内容
+//express
+const expres = require('express');
+//引入连接池模块(注意路径)
+const pool = require('../pool')
+
+2.创建路由对象并暴露它
+//创建路由对象
+const router = express.Router()
+//暴露路由对象
+module.exports = router
+
+3.路由
+-是否有访问
+-接收参数是否正确
+-sql语句是否正确
+-连接数据库之后出错
+--pool.js检查
+--sql语句
+--data数据要打印
+
+四、管理员模块
+// 1.管理员登录接口
+// post /admin/losgin
+// 访问接口地址 :http://127.0.0.1:8080/admin/login
+// 2.管理员查询所有用户信息接口 get 
+// get /list
+// 访问接口地址 :http://127.0.0.1:8080/admin/list

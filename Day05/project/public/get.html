@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <h1>电脑排行热度前十</h1>
+  <ul id="list"></ul>
+  <script>
+    var list = document.getElementById('list');
+    function ajax() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            var result = xhr.responseText;
+            console.log(result);
+            //将对象形式的字符串转化为真正的对象
+            var datajson = JSON.parse(result);
+            console.log(datajson);
+            list.innerHTML = shoulist(datajson);
+
+          } else {
+            console.log("请求出错");
+          }
+        }
+      }
+      xhr.open("GET", "/list", true);
+      xhr.send();
+    }
+    //调用ajax函数,执行异步请求
+    ajax();
+    //访问地址:http://127.0.0.1:8080/get.html
+
+    // shoulist 函数用于把后台响应的数据展示在页面上
+    function shoulist(arr) {
+      //创建一个空变量
+      var str = '';
+      //变量
+      for (var i = 0; i < arr.length; i++) {
+        str += `<li>
+          <h1>${arr[i].id}</h1>
+          <h3>${arr[i].tit}</h3>
+          <h2>${arr[i].price}</h2>
+          </li>`;
+      }
+      return str;
+    }
+
+  </script>
+</body>
+
+</html>

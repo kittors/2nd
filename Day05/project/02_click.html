@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <button onclick="dy()">按钮</button>
+  <ul id="list"></ul>
+  <div id="box">1</div>
+  <div class=""></div>
+  <!-- 以下获取input的值 -->
+  <input type="text" id="username">
+  <button id="btn">验证</button>
+  <p id="show"></p>
+  <script>
+    //点击按钮之后再ul中增加一个li里放一个水果的名字
+    //1.获取ul元素
+    var list = document.getElementById('list');
+    function dy() {
+      // console.log(123);
+      list.innerHTML = "<li>西瓜</li><li>香蕉</li>"
+    }
+    //第二种通过js绑定事件
+    //先获取元素
+    var box = document.getElementById('box');
+    box.onclick = function () {
+      //此时这个this指向的是调用函数的元素也就是box自己
+      this.innerHTML = '我是一个box'
+    }
+    // *******************
+    // 获取input元素
+    var username = document.getElementById('username');
+    // 一个按钮（获取）一个输入框（获取），输入内容在输入框后点击按钮（绑定点击事件），获取输入框内的内容
+    var btn = document.getElementById('btn');
+    var show = document.getElementById('show');
+    btn.onclick = function () {
+      //点击事件内触发获取input元素的value属性
+      console.log(username.value);
+      // username.value = '哈哈哈哈哈';
+      show.innerHTML = `你好,欢迎${username.value}`;
+    }
+  </script>
+</body>
+
+</html>
