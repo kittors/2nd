@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="#">
+  <title>管理员登录</title>
+  <style></style>
+</head>
+
+<body>
+  <h1>管理员登录</h1>
+  <input type="text" placeholder="username" id="username" id="username"><br>
+  <input type="password" placeholder="pwd" id="pwd"><br>
+  <button id="btn">登录</button>
+  <!-- 需要一个当登录成功后可以在内部显示的超链接 -->
+  <div id="box"></div>
+  <script>
+    var username = document.getElementById('username');
+    var pwd = document.getElementById('pwd');
+    var btn = document.getElementById('btn');
+    var box = document.getElementById('box');
+
+    // 2.点击按钮触发事件
+    btn.onclick = function () {
+      // 3.收集用户输入的数据，并注意空内容
+      var unameval = username.value.trim();
+      var pwdval = pwd.value.trim();
+      // 可以在这里检测收集的数据是否为空或错误
+      console.log(unameval, pwdval);
+      // 发现没有必要单独写ajax函数，于是就直接在点击事件里写ajax
+      // 验证要传的参数是否是正确的
+      console.log(`anames=${unameval}&apwd=${pwdval}`);
+      // 4.创建异步对象
+      var xhr = new XMLHttpRequest();
+      // 5.监听并处理响应
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            var result = xhr.responseText;
+            console.log(result);
+            // 结果是一个对象格式的字符串，需转换成对象
+            var datajson = JSON.parse(result);
+            // 验证对象的格式
+            console.log(datajson);
+            // 11.判断验证是否成功，因为datajson.code返回的是数字类型，数字类型隐式转换布尔，0是false，非0是true
+            if (datajson.code) {
+              // 1
+              // 提示用户登录成功
+              alert('用户登录成功');
+              // 情况输入框的数据(给元素的value值赋值为""空字符串)
+              username.value = '';
+              pwd.value = '';
+              //在box里出现a标签可以跳转管理员查看用户列表界面 userlist.html
+              box.innerHTML = '<a href="userlist.html">查看用户列表</a>'
+            } else {
+              //0 提示用户密码或者账号错误
+              alert('用户名或者账号错误');
+            }
+
+          } else {
+            alert('请求出错')
+          }
+        }
+      }
+
+      // 6.设置请求信息
+      xhr.open('POST', '/admin/login', true);
+      // 7.设置请求头
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      // 8.发送请求
+      xhr.send(`anames=${unameval}&apwd=${pwdval}`);
+    }
+  </script>
+</body>
+
+</html>

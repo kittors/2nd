@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="#">
+  <title>用户注册</title>
+  <style></style>
+</head>
+
+<body>
+  <h1>用户注册</h1>
+  <input type="text" placeholder="名字" id="username"><br>
+  <input type="text" placeholder="电话" id="phone"><br>
+  <input type="text" placeholder="会员1/0" id="member"><br>
+  <hr>
+  <button id="btn">注册</button><br>
+  <a href="./useredit.html">点击修改用户信息</a>
+  <script>
+    // 1.获取元素
+    var username = document.getElementById('username');
+    var member = document.getElementById('member');
+    var btn = document.getElementById('btn');
+    var phone = document.getElementById('phone');
+    // 2.点击按钮获取用户输入的信息（注意不能为空）
+    btn.onclick = function () {
+      // 3.获取用户信息后使用ajax post
+      var unameval = username.value.trim();
+      var phoneval = phone.value.trim();
+      var memberval = member.value.trim();
+      // 以下三个值只要有一个是空字符串就会返回false
+      if (unameval && phoneval && memberval) {
+        // ajax
+        // 创建异步对象
+        var xhr = new XMLHttpRequest();
+        // 监听处理响应
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              var result = xhr.responseText;
+              console.log(result);
+              var datajson = JSON.parse(result);
+              console.log(datajson);
+              alert(datajson.msg);
+            } else {
+              alert("请求错误");
+            }
+
+          }
+        }
+        xhr.open('POST', '/user/reg', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send(`u_names=${unameval}&u_phone=${phoneval}&u_member=${memberval}`);
+      } else {
+        alert('有空值');
+      }
+
+
+    }
+
+  </script>
+</body>
+
+</html>

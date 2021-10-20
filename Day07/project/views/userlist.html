@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="#">
+  <title>用户列表</title>
+  <style></style>
+</head>
+
+<body>
+  <h1>用户列表</h1>
+  <table border="1px">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>电话</th>
+        <th>会员</th>
+        <th>删除</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      <tr>
+        <td>1</td>
+        <td>tom</td>
+        <td>15201076723</td>
+        <td>1</td>
+        <td><button>删除</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- 单独查询数据 -->
+  <a href="./userquery.html">查询单个用户</a>
+  <script>
+    // 1.获取元素
+
+    var tbody = document.getElementById('tbody');
+    // 2.ajax函数(负责的是显示后台数据到前台页面)
+    function ajax() {
+      // 创建异步对象
+      var xhr = new XMLHttpRequest();
+      // 监听响应数据
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            var result = xhr.responseText;
+            console.log(result);
+            var datajson = JSON.parse(result);
+            console.log(datajson);
+            tbody.innerHTML = showlist(datajson.data);
+          } else {
+            alert('请求错误');
+          }
+        }
+
+      }
+      // 设置请求信息
+      xhr.open('GET', '/admin/list', true);
+      // 发送异步请求
+      xhr.send();
+    }
+    ajax();
+    // 访问地址：http://127.0.0.1:8080/userlist.html
+    // 返回数据多，需要循环遍历后显示在页面上
+    // 创建一个用于循环显示的函数showlist
+    function showlist(arr) {
+      // 创建空字符串准备接受累加的大字符串
+      let str = '';
+      // 循环
+      for (let i = 0; i < arr.length; i++) {
+        // 将一个标签组合加入
+        str += `<tr>
+        <td>${arr[i].u_id}</td>
+        <td>${arr[i].u_names}</td>
+        <td>${arr[i].u_phone}</td>
+        <td>${arr[i].u_member}</td>
+        <td><button onclick="del(${arr[i].u_id})">删除</button></td></tr>
+        `;
+      }
+      return str;
+    }
+    // del删除函数
+    function del(id) {
+      //检查点击删除是否有id传入,要删除的id是否正确
+      console.log(id);
+      // 触发删除的ajax用删除的方法,用删除的接口,传参注意不是?是RESTful风格 /
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            var result = xhr.responseText;
+            console.log(result);
+            var datajson = JSON.parse(result);
+            if (datajson.code) {
+              alert("删除成功");
+              //重新调用ajax()让它重获取一次数据库数据再自动显示一遍，其实就是innerHTML覆盖原内容
+              ajax();
+            } else {
+              alert('删除失败');
+            }
+          }
+        }
+      }
+      // 设置请求信息
+      xhr.open("DELETE", `/admin/del/${id}`, true);
+      xhr.send();
+    }
+  </script>
+
+</body>
+
+</html>

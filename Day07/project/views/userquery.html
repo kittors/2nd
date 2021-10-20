@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style></style>
+</head>
+
+<body>
+  <h1>查询单个用户</h1>
+  <input type="text" placeholder="查询用户名" id="username">
+  <button id="btn">查询</button>
+  <h1>用户列表</h1>
+  <table border="1px">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>电话</th>
+        <th>会员</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <script>
+    // 1.获取元素
+    var username = document.getElementById('username');
+    var btn = document.getElementById('btn');
+    var tbody = document.getElementById('tbody');
+    // 2.点击按钮手机数据，调用ajax
+    btn.onclick = function () {
+      // 获取管理员输入的用户名，去空格
+      var unameval = username.value.trim();
+      // 查看输入的名字是否正确
+      // console.log(unameval);
+      // 在点击事件里调用ajax函数并且把用户的名字传给ajax函数当做向后台发送的数据
+      ajax(unameval);
+    }
+    function ajax(n) {
+      // 创建异步对象
+      var xhr = new XMLHttpRequest();
+      // 监听响应数据
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            var result = xhr.responseText;
+            // console.log(result);
+            var datajson = JSON.parse(result);
+            console.log(datajson);
+            if (datajson.code) {
+              tbody.innerHTML = showlist(datajson.data);
+            } else {
+              // concole.log('没有找到该用户')
+              alert('没有找到该用户');
+            }
+          } else {
+            alert('请求错误');
+          }
+        }
+
+      }
+      // 设置请求信息
+      //  /admin/query?unames=${n}
+      xhr.open('GET', `/admin/query?uname=${n}`, true);
+      // 发送异步请求
+      xhr.send();
+    }
+    function showlist(arr) {
+      // 创建空字符串准备接受累加的大字符串
+      let str = '';
+      // 循环
+      for (let i = 0; i < arr.length; i++) {
+        // 将一个标签组合加入
+        str += `<tr>
+        <td>${arr[i].u_id}</td>
+        <td>${arr[i].u_names}</td>
+        <td>${arr[i].u_phone}</td>
+        <td>${arr[i].u_member}</td>
+        </tr>
+        `;
+      }
+      return str;
+    }
+
+  </script>
+</body>
+
+</html>
