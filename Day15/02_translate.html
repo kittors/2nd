@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    /* transform 变化的属性 */
+    .a .a2 {
+      /* margin-top: 20px; */
+      transform: translateY(20px);
+    }
+
+    .b {
+      width: 400px;
+      height: 300px;
+      background-color: yellow;
+
+    }
+
+    .b .b1 {
+      width: 50px;
+      height: 50px;
+      background-color: blue;
+      transition: 1s;
+
+    }
+
+    .b:hover>.b1 {
+      transform: translate(300px, 200px);
+    }
+  </style>
+</head>
+<!-- 使用外边距移动 -->
+
+<body>
+  <!-- 使用外边距移动:影响其他元素(不用)
+   -->
+  <div class="a">
+    <div class="a1">home</div>
+    <div class="a2">ok</div>
+  </div>
+  <div class="b">
+    <div class="b1"></div>
+  </div>
+</body>
+
+</html>

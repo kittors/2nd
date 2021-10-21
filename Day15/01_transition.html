@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .a {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      border-radius: 2px;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+      /* 过度属性的名字 */
+      /* transition-property: width, background-color; */
+      /* 过度属性的时间 */
+      /* transition-duration: 1s; */
+      /* 过度方式 */
+      /* transition-timing-function: ease; */
+      /* 先慢再快最后慢 */
+      /* transition-timing-function: ease-in; */
+      /* 先慢,越来越快 */
+      /* transition-timing-function: ease-out; */
+      /* 先快,越来越慢 */
+      /* transition-timing-function: ease-in-out; */
+      /* 先慢,再匀速,再慢 */
+      /* transition-timing-function: linear; */
+      /* 匀速 */
+      /* 延迟时间 */
+      /* transition-delay: 3s; */
+      /* 多重过度效果 */
+      transition: width 1s, background-color 1s 1s;
+
+    }
+
+    .a:hover {
+      background-color: blue;
+      width: 1000px;
+      height: 150px;
+    }
+
+    .b {
+      width: 100px;
+      height: 100px;
+      background-color: yellowgreen;
+      /* 过度时间 必写 延迟时间可省 过度方式可省 过度属性默认all */
+      transition: 1s 0s width ease;
+    }
+
+    .b:hover {
+      width: 300px;
+    }
+
+    .c {
+      width: 100px;
+      height: 100px;
+      background-color: aqua;
+      transition: border-radius 1s, background-color 1s 1s;
+
+    }
+
+    .c:hover {
+      border-radius: 50%;
+      background-color: pink;
+    }
+
+    .d {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 在元素的状态切换中,改变元素的样式,并通过一段时间进行变换 -->
+  <div class="a"></div>
+  <div class="b"></div>
+  <div class="c"></div>
+  <div class="d"></div>
+</body>
+
+</html>

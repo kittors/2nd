@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 300px;
+      perspective: 100px;
+      margin: auto;
+
+    }
+
+    .pk {
+      width: 205px;
+      height: 289px;
+      border: 2px solid red;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: 1s linear;
+    }
+
+    .pk:hover {
+      transform: rotateY(300deg)
+    }
+
+    .pk img {
+      position: absolute;
+    }
+
+    .pk img:nth-child(1) {
+      transform: translateZ(1px);
+    }
+
+    /* 第二张背面的扑克牌转身 */
+    .pk img:nth-child(2) {
+      transform: rotateY(180deg);
+      transform: scaleX(1);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 用于变换透视的元素 -->
+  <div class="box">
+    <!-- 3d空间的元素 -->
+    <div class="pk">
+      <img src="./img/扑克a.jpg" alt="">
+      <img src="./img/扑克b.jpg" alt="">
+    </div>
+
+  </div>
+</body>
+
+</html>

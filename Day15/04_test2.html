@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .a {
+      width: 500px;
+      height: 309px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .b {
+      width: 500px;
+      height: 309px;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0px;
+      transition: 1s;
+    }
+
+    .a:hover>.b {
+
+      transform: translateX(-500px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="a">
+    <img src="./img/2.jpg" alt="">
+    <div class="b"></div>
+  </div>
+</body>
+
+</html>
